@@ -1,0 +1,89 @@
+//斐波那契数列
+#include<stdio.h>
+long fib(int n);
+int main()
+{
+	int n, i, x;
+	scanf("%d", &n);
+	for (i = 1;i <= n;i++)
+	{
+		x = fib(i);
+		printf("%d", x);
+	}
+	
+	return 0;
+}
+long fib(int n)
+{
+	if (n == 1)
+		return 1;
+	if (n == 2)
+		return 1;
+	else
+		return (fib(n - 1) + fib(n - 2));
+}
+//素数
+#include <stdio.h>
+// 函数声明
+isPrime(int num);
+void storeNumber(int arr[], int num1, int num2)
+{
+	arr[0] = num1;
+	arr[1] = num2;
+}
+int main()
+{
+	int numbers[2];
+	int start, end;
+	printf("输入两个正整数");
+	scanf("%d %d", &start, &end);
+	storeNumber(numbers, start, end);
+	printf("在 %d 到 %d 之间的孪生素数对有：\n", start, end);
+	for (int i = start; i <= end - 2; i++)
+	{
+		if (isPrime(i) && isPrime(i + 2))
+		{
+			printf("(%d, %d)\n", i, i + 2);
+		}
+	}
+
+	return 0;
+}
+
+// 判断一个数是否为素数
+ isPrime(int num) 
+{
+	if (num <= 1)
+		return 0;
+	if (num <= 3) 
+		return 1;
+	if (num % 2 == 0 || num % 3 == 0) 
+		return 0;
+
+	for (int i = 5; i * i <= num; i += 6) 
+	{
+		if (num % i == 0 || num % (i + 2) == 0) 
+		{
+			return 0;
+	}
+	}
+	return 1;
+
+}
+/**两数之和
+ * Note: The returned array must be malloced, assume caller calls free().
+ */
+int* twoSum(int* nums, int numsSize, int target, int* returnSize) {
+    for (int i = 0; i < numsSize; ++i) {
+        for (int j = i + 1; j < numsSize; ++j) {
+            if (nums[i] + nums[j] == target) {
+                int* a = malloc(sizeof(int) * 2);
+                a[0] = i, a[1] = j;
+                *returnSize = 2;
+                return a;
+            }
+        }
+    }
+    *returnSize = 0;
+    return NULL;
+}
